@@ -46,7 +46,7 @@ func main() {
 	docs.SwaggerInfo.Description = "Simple file server for storing files"
 	docs.SwaggerInfo.Version = "0.1.0"
 	docs.SwaggerInfo.Host = host
-	docs.SwaggerInfo.BasePath = "/"
+	docs.SwaggerInfo.BasePath = "/files"
 
 	// Routes
 	//urlSwagger := ginSwagger.URL("http://localhost:8080/swagger/doc.json")
