@@ -34,11 +34,18 @@ func main() {
 	r.Use(CORS())
 	r.Use(middlewares.BodySizeLimiter())
 
+	var host string
+	if strings.Contains(configs.URL, "https://") {
+		host = strings.Split(configs.URL, "https://")[1]
+	} else {
+		host = strings.Split(configs.URL, "http://")[1]
+	}
+
 	// Swagger
 	docs.SwaggerInfo.Title = "File server"
 	docs.SwaggerInfo.Description = "Simple file server for storing files"
 	docs.SwaggerInfo.Version = "0.1.0"
-	docs.SwaggerInfo.Host = strings.Split(configs.URL, "https://")[1]
+	docs.SwaggerInfo.Host = host
 	docs.SwaggerInfo.BasePath = "/files"
 
 	// Routes
