@@ -1,11 +1,11 @@
 package main
 
 import (
-	"ChequeandomeVisionBackend/docs"
-	"ChequeandomeVisionBackend/internal/configs"
-	_ "ChequeandomeVisionBackend/internal/configs"
-	middlewares "ChequeandomeVisionBackend/internal/middleware"
-	"ChequeandomeVisionBackend/internal/routes"
+	"Chequeandome-Vision-Demo/docs"
+	"Chequeandome-Vision-Demo/internal/configs"
+	_ "Chequeandome-Vision-Demo/internal/configs"
+	middlewares "Chequeandome-Vision-Demo/internal/middleware"
+	"Chequeandome-Vision-Demo/internal/routes"
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
@@ -46,7 +46,7 @@ func main() {
 	docs.SwaggerInfo.Description = "Simple file server for storing files"
 	docs.SwaggerInfo.Version = "0.1.0"
 	docs.SwaggerInfo.Host = host
-	docs.SwaggerInfo.BasePath = "/files"
+	docs.SwaggerInfo.BasePath = "/"
 
 	// Routes
 	//urlSwagger := ginSwagger.URL("http://localhost:8080/swagger/doc.json")

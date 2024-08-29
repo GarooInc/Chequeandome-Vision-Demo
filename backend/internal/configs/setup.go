@@ -1,7 +1,7 @@
 package configs
 
 import (
-	"ChequeandomeVisionBackend/internal/database"
+	"Chequeandome-Vision-Demo/internal/database"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/session"

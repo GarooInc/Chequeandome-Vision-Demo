@@ -15,32 +15,25 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/files/:directory/:file": {
-            "get": {
-                "description": "Obtiene un archivo de S3",
+        "/": {
+            "post": {
+                "description": "Sube un archivo a S3 y lo asocia al usuario que lo subió.",
                 "consumes": [
-                    "application/json"
+                    "multipart/form-data"
                 ],
                 "produces": [
-                    "multipart/form-data"
+                    "application/json"
                 ],
                 "tags": [
                     "Files"
                 ],
-                "summary": "Obtiene un archivo de S3",
+                "summary": "Sube un archivo a S3 y lo asocia al usuario que lo subió",
                 "parameters": [
                     {
-                        "type": "string",
-                        "description": "Directorio donde se encuentra el archivo",
-                        "name": "directory",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "Nombre del archivo",
-                        "name": "file",
-                        "in": "path",
+                        "type": "file",
+                        "description": "Archivo a subir",
+                        "name": "files",
+                        "in": "formData",
                         "required": true
                     }
                 ],
@@ -48,7 +41,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/responses.StandardResponse"
+                            "$ref": "#/definitions/responses.UploadSuccessResponse"
                         }
                     },
                     "400": {
@@ -66,32 +59,25 @@ const docTemplate = `{
                 }
             }
         },
-        "/{directory}": {
-            "post": {
-                "description": "Sube un archivo a S3 y lo asocia al usuario que lo subió.",
+        "/files/:file": {
+            "get": {
+                "description": "Obtiene un archivo de S3",
                 "consumes": [
-                    "multipart/form-data"
+                    "application/json"
                 ],
                 "produces": [
-                    "application/json"
+                    "multipart/form-data"
                 ],
                 "tags": [
                     "Files"
                 ],
-                "summary": "Sube un archivo a S3 y lo asocia al usuario que lo subió",
+                "summary": "Obtiene un archivo de S3",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Directorio donde se guardará el archivo",
-                        "name": "directory",
+                        "description": "Nombre del archivo",
+                        "name": "file",
                         "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "file",
-                        "description": "Archivo a subir",
-                        "name": "files",
-                        "in": "formData",
                         "required": true
                     }
                 ],
@@ -99,7 +85,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/responses.UploadSuccessResponse"
+                            "$ref": "#/definitions/responses.StandardResponse"
                         }
                     },
                     "400": {

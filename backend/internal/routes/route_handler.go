@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"ChequeandomeVisionBackend/internal/controllers"
+	"Chequeandome-Vision-Demo/internal/controllers"
 	"github.com/gin-gonic/gin"
 )
 
@@ -13,6 +13,6 @@ func Routes(r *gin.Engine) {
 		})
 	})
 
-	r.POST("/:directory", controllers.Upload)
-	r.GET("/:directory/:file", controllers.GetFile)
+	r.POST("/", controllers.Upload)
+	r.GET("/:file", controllers.GetFile)
 }

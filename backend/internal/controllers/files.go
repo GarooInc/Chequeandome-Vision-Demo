@@ -1,9 +1,9 @@
 package controllers
 
 import (
-	"ChequeandomeVisionBackend/internal/configs"
-	"ChequeandomeVisionBackend/internal/database"
-	"ChequeandomeVisionBackend/internal/responses"
+	"Chequeandome-Vision-Demo/internal/configs"
+	"Chequeandome-Vision-Demo/internal/database"
+	"Chequeandome-Vision-Demo/internal/responses"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"mime/multipart"
@@ -20,23 +20,12 @@ type Form struct {
 // @Tags Files
 // @Accept  mpfd
 // @Produce  json
-// @Param directory path string true "Directorio donde se guardará el archivo"
 // @Param files formData file true "Archivo a subir"
 // @Success 200 {object} responses.UploadSuccessResponse
 // @Failure 400 {object} responses.StandardResponse
 // @Failure 500 {object} responses.StandardResponse
-// @Router /{directory} [post]
+// @Router / [post]
 func Upload(c *gin.Context) {
-	directory := c.Param("directory")
-
-	if directory == "" {
-		c.JSON(http.StatusBadRequest, responses.StandardResponse{
-			Code:    http.StatusBadRequest,
-			Message: "Directory is required",
-		})
-		return
-	}
-
 	var form Form
 
 	if err := c.ShouldBind(&form); err != nil {
@@ -52,7 +41,7 @@ func Upload(c *gin.Context) {
 	for _, file := range form.Files {
 		// Upload to S3
 
-		path := fmt.Sprintf("%s/%s", directory, file.Filename)
+		path := fmt.Sprintf("%s", file.Filename)
 
 		err := database.Instance.Insert(path, file)
 
@@ -64,7 +53,7 @@ func Upload(c *gin.Context) {
 			return
 		}
 
-		paths = append(paths, fmt.Sprintf("%s/files/%s/%s", configs.URL, directory, file.Filename))
+		paths = append(paths, fmt.Sprintf("%s/files/%s", configs.URL, file.Filename))
 	}
 
 	c.JSON(http.StatusOK, responses.UploadSuccessResponse{
@@ -82,17 +71,15 @@ func Upload(c *gin.Context) {
 // @Tags Files
 // @Accept  json
 // @Produce  mpfd
-// @Param directory path string true "Directorio donde se encuentra el archivo"
 // @Param file path string true "Nombre del archivo"
 // @Success 200 {object} responses.StandardResponse
 // @Failure 400 {object} responses.StandardResponse
 // @Failure 500 {object} responses.StandardResponse
-// @Router /files/:directory/:file [get]
+// @Router /files/:file [get]
 func GetFile(c *gin.Context) {
-	directory := c.Param("directory")
 	name := c.Param("file")
 
-	if directory == "" || name == "" {
+	if name == "" {
 		c.JSON(http.StatusBadRequest, responses.StandardResponse{
 			Code:    http.StatusBadRequest,
 			Message: "Directory and name are required",
@@ -100,7 +87,7 @@ func GetFile(c *gin.Context) {
 		return
 	}
 
-	path := fmt.Sprintf("%s/%s", directory, name)
+	path := fmt.Sprintf("%s", name)
 
 	file, err := database.Instance.GetFile(path)
 

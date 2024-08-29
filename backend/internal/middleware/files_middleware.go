@@ -1,7 +1,7 @@
 package middlewares
 
 import (
-	"ChequeandomeVisionBackend/internal/configs"
+	"Chequeandome-Vision-Demo/internal/configs"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )

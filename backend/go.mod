@@ -1,4 +1,4 @@
-module ChequeandomeVisionBackend
+module Chequeandome-Vision-Demo
 
 go 1.21
 
