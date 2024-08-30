@@ -41,10 +41,10 @@ function handleFileUpload() {
 </script>
 
 <template>
-  <div>
+  <div class="w-1/2">
     <input type="file" ref="fileInput" style="display: none" @change="handleFileUpload" />
-    <button @click="fileInput.click()" class="text-white font-bold py-2 px-4 rounded">
-      <PaperClipIcon class="w-7 h-7 hover:text-blue-500" />
+    <button @click="fileInput.click()" class="flex justify-center items-center text-white font-bold py-2 px-4 rounded w-full bg-blue-500">
+      <PaperClipIcon class="w-7 h-7 hover:text-blue-500 m-2" />
     </button>
   </div>
 </template>
