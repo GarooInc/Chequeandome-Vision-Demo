@@ -26,18 +26,21 @@ const handleFileUploaded = async (url) => {
 </script>
 
 <template>
-  <div class="flex flex-col items-center justify-center h-full w-full">
-    <p class="text-2xl font-bold my-8 text-black">Sube una receta médica</p>
-    <FileInput @fileUploaded="handleFileUploaded" />
-    <div v-if="result" class="mt-4 text-lg flex flex-col justify-center items-center">
+  <div class="flex flex-col items-center justify-around h-full w-full">
+    <img src="/garoo.png" alt="Garoo logo" class="logo" />
+    <p class="text-2xl font-bold my-4 text-black">Sube una receta médica</p>
+    <div v-if="result" class="my-4 text-lg flex flex-col justify-center items-center">
       <PulseLoader v-if="loading" color="#2563EB" class="my-4" />
       <p class="p-8 my-8 w-full text-black rounded border-2 border-gray-300" v-html="result" v-else></p>
-      <img v-if="imageUrl" :src="imageUrl" alt="Uploaded image" class="max-h-96" />
+      <img v-if="imageUrl" :src="imageUrl" alt="Uploaded image" class="max-h-64" />
     </div>
+    <FileInput @fileUploaded="handleFileUploaded" />
   </div>
 </template>
 
 <style scoped>
-/* Estilos opcionales */
+.logo {
+  width: clamp(200px, 40%, 300px);
+}
 </style>
 

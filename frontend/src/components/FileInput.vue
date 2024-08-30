@@ -43,8 +43,8 @@ function handleFileUpload() {
 <template>
   <div class="w-1/2">
     <input type="file" ref="fileInput" style="display: none" @change="handleFileUpload" />
-    <button @click="fileInput.click()" class="flex justify-center items-center text-white font-bold py-2 px-4 rounded w-full bg-blue-500">
-      <PaperClipIcon class="w-7 h-7 hover:text-blue-500 m-2" />
+    <button @click="fileInput.click()" class="flex justify-center items-center text-white font-bold py-2 px-4 rounded w-full bg-blue-500  hover:bg-blue-700">
+      <PaperClipIcon class="w-7 h-7" />
     </button>
   </div>
 </template>
