@@ -30,7 +30,7 @@ const handleFileUploaded = async (url) => {
     <p class="text-2xl font-bold my-8 text-black">Sube una receta médica</p>
     <FileInput @fileUploaded="handleFileUploaded" />
     <div v-if="result" class="mt-4 text-lg flex flex-col justify-center items-center">
-      <PulseLoader v-if="loading" color="#2563EB" />
+      <PulseLoader v-if="loading" color="#2563EB" class="my-4" />
       <p class="p-8 my-8 w-full text-black rounded border-2 border-gray-300" v-else>{{ result }}</p>
       <img v-if="imageUrl" :src="imageUrl" alt="Uploaded image" class="max-h-96" />
     </div>
