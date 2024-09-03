@@ -26,6 +26,7 @@ export async function analyzeImage(imageUrl) {
                 }
             ],
             max_tokens: 800,
+            temperature: 0.0,
         }),
     });
 
